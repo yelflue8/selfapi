@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Email Sender Tool</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background-color: #f5f5f5;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 15px;
+    }
+    textarea, input[type="text"], input[type="password"], input[type="number"], input[type="file"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      resize: vertical;
+    }
+    .hidden { display: none; }
+    .container {
+      background: #fff;
+      padding: 25px;
+      border-radius: 8px;
+      max-width: 700px;
+      margin: auto;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .checkbox-label {
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+    }
+    .checkbox-label input {
+      margin-right: 10px;
+    }
+    .button-group {
+      margin-top: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      margin-right: 10px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+    #statusLog {
+      margin-top: 20px;
+      font-size: 14px;
+      background-color: #eef;
+      padding: 10px;
+      border-radius: 5px;
+      height: 150px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+    }
+    .tag-list {
+      display: inline-block;
+      background-color: #ddd;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 12px;
+      color: #333;
+      margin-left: 15px;
+    }
+    #emails-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Email Sender Tool</h2>
+
+    <label id="emails-label" for="emails">
+      📧 Paste Bulk Emails (one per line): 
+      <span id="emailCount">0 emails</span>
+    </label>
+    <textarea id="emails" rows="5" placeholder="email1@example.com&#10;email2@example.com"></textarea>
+
+    <label for="subject">📌 Subject (one per line):</label>
+    <textarea id="subject" rows="3" placeholder="One subject per line"></textarea>
+
+    <label for="body">
+      ✏️ HTML or Plain Text Body:
+      <span class="tag-list">#price #date #email #random #number #address</span>
+    </label>
+    <textarea id="body" rows="10" placeholder="Paste email body (HTML or text)"></textarea>
+
+    <label for="attachment">📎 Attachment (pdf, jpeg, jpg, png, gif):</label>
+    <input type="file" id="attachment" accept=".pdf,.jpeg,.jpg,.png,.gif" />
+
+    <div id="apiField" class="view" style="margin-top:20px;">
+      <label for="apiToken">🔐 Gmail API Client Secret JSON:</label>
+      <textarea id="apiToken" rows="5" placeholder="Paste Gmail API JSON here"></textarea>
+    </div>
+
+    <div class="button-group">
+      <button id="sendBtn">Send</button>
+      <button id="pauseBtn" disabled>Pause</button>
+      <button id="stopBtn" disabled>Stop</button>
+      <button id="viewHistoryBtn">History</button>
+    </div>
+
+    <div id="statusLog"></div>
+  </div>
+
+  <script src="email_script.js"></script>
+</body>
+</html>
